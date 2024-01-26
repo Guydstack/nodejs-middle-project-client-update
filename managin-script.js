@@ -349,4 +349,4 @@ async function fetchUserInfo() {
   
 
         // Call the function when the page loads
-        fetchUserInfo();
+        //fetchUserInfo();
