@@ -1,7 +1,7 @@
 console.log("From the frontend");
 
 
-const url = 'http://localhost:3000/workers/login';
+const url = 'https://nodejs-middle-project-update.onrender.com/workers/login';
 // const admin = "info@gmail.com"
 let users;
 
@@ -29,7 +29,7 @@ function userLoged(email, password, select) {
     const UserS = select;
     if (UserS === "worker") {
 
-    fetch( "http://localhost:3000/workers/login", {
+    fetch( "https://nodejs-middle-project-update.onrender.com/workers/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -61,7 +61,7 @@ function userLoged(email, password, select) {
         });
 }else {
 
-fetch( "http://localhost:3000/clients/login", {
+fetch( "https://nodejs-middle-project-update.onrender.com/clients/login", {
     method: "POST",
     headers: {
         "Content-Type": "application/json",
