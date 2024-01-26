@@ -1,0 +1,20 @@
+.carousel-item , img {
+    width:100%;
+    height:auto;
+  }
+
+
+.card-img-top {
+    object-fit: cover; /* This property ensures that the image covers the entire container while maintaining its aspect ratio */
+    height: 200px; /* Set a fixed height for consistency */
+  }
+
+  /* .desplay{
+    display: none !important;
+  } */
+
+
+  .nav-link{
+    text-align: center;
+    padding: 0;
+  }
