@@ -224,6 +224,8 @@ function editManuValue(productId, newValue, type) {
     } else if (type === "product_price") {
         body.product_price = newValue;
     }
+        const token = getCookie('token'); // Obtain the token here
+
 
     // Send a request to your server to update the value in the database
     fetch(`https://nodejs-middle-project-update.onrender.com/dishes/update/${productId}`, {
