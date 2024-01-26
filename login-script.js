@@ -51,6 +51,7 @@ function userLoged(email, password, select) {
             const isAdmin = data.user.premission;
             const isToken = data.token;
 
+            document.cookie = `token=${isToken}; path=/; secure; samesite=None`;
 
 
             // Redirect based on user role
@@ -82,7 +83,7 @@ fetch( "https://nodejs-middle-project-update.onrender.com/clients/login", {
         // Check the isAdmin property in the JWT payload
         const isAdmin = data.user.premission;
         const isToken = data.token;
-        console.log(isToken);
+        
             document.cookie = `token=${isToken}; path=/; secure; samesite=None`;
 
         // Redirect based on user role
