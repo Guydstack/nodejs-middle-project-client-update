@@ -82,9 +82,10 @@ fetch( "https://nodejs-middle-project-update.onrender.com/clients/login", {
         // Check the isAdmin property in the JWT payload
         const isAdmin = data.user.premission;
         const isToken = data.token;
+        console.log(isToken);
 
         // Redirect based on user role
-        redirectUser(isAdmin,UserS);
+        // redirectUser(isAdmin,UserS);
     })
     .catch(error => {
         console.error('Error:', error.message);
