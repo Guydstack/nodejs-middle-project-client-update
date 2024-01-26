@@ -224,15 +224,12 @@ function editManuValue(productId, newValue, type) {
     } else if (type === "product_price") {
         body.product_price = newValue;
     }
-        const token = getCookie('token'); // Obtain the token here
-
 
     // Send a request to your server to update the value in the database
     fetch(`https://nodejs-middle-project-update.onrender.com/dishes/update/${productId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`, // Include the token in the headers
         },
         body: JSON.stringify(body),
     })
@@ -276,7 +273,7 @@ function removeEvent(productId) {
 function removeManu(productId) {
 
     // Send a request to your server to update the value in the database
-    fetch(`https://nodejs-middle-project-update.onrender.com/dishes/delete/${productId}`, {
+    fetch(`https://nodejs-middle-project-update.onrender.com/delete/${productId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
