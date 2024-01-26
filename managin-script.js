@@ -217,6 +217,8 @@ function editManuValue(productId, newValue, type) {
     }
 
     const token = getCookie('token'); // Obtain the token here
+    console.log('Token:', token);
+
 
     // Send a request to your server to update the value in the database
     fetch(`https://nodejs-middle-project-update.onrender.com/dishes/update/${productId}`, {
