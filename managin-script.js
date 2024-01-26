@@ -77,7 +77,7 @@ function addEvent(title, information, amount, eventUrl, formData) {
 console.log(mixedFormData);
     // Send the mixed FormData in the fetch request
     // check if need to add await
-    fetch("http://localhost:3000/events/add", {
+    fetch("https://nodejs-middle-project-update.onrender.com/events/add", {
         method: "POST",
         body: mixedFormData
     })
@@ -101,7 +101,7 @@ function addDish(title, information, amount, dishUrl, fileData) {
     const dish_u = dishUrl;
 
 
-    fetch("http://localhost:3000/dishes/add", {
+    fetch("https://nodejs-middle-project-update.onrender.com/dishes/add", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -128,7 +128,7 @@ function addDish(title, information, amount, dishUrl, fileData) {
 
 const getAllProducts = async () => {
     try {
-        const response = await fetch('http://localhost:3000/events/all');
+        const response = await fetch('https://nodejs-middle-project-update.onrender.com/events/all');
         const data = await response.json();
         eventsL.innerHTML = "";
 
@@ -157,7 +157,7 @@ const getAllProducts = async () => {
 
 const getAllDish = async () => {
     try {
-        const response = await fetch('http://localhost:3000/dishes/all');
+        const response = await fetch('https://nodejs-middle-project-update.onrender.com/dishes/all');
         const data = await response.json();
         eventsL.innerHTML = "";
 
@@ -194,7 +194,7 @@ function editValue(productId, newValue, type) {
     }
 
     // Send a request to your server to update the value in the database
-    fetch(`http://localhost:3000/events/update/${productId}`, {
+    fetch(`https://nodejs-middle-project-update.onrender.com/events/update/${productId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -226,7 +226,7 @@ function editManuValue(productId, newValue, type) {
     }
 
     // Send a request to your server to update the value in the database
-    fetch(`http://localhost:3000/dishes/update/${productId}`, {
+    fetch(`https://nodejs-middle-project-update.onrender.com/dishes/update/${productId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -249,7 +249,7 @@ function editManuValue(productId, newValue, type) {
 function removeEvent(productId) {
 
     // Send a request to your server to update the value in the database
-    fetch(`http://localhost:3000/events/delete/${productId}`, {
+    fetch(`https://nodejs-middle-project-update.onrender.com/events/delete/${productId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -273,7 +273,7 @@ function removeEvent(productId) {
 function removeManu(productId) {
 
     // Send a request to your server to update the value in the database
-    fetch(`http://localhost:3000/dishes/delete/${productId}`, {
+    fetch(`https://nodejs-middle-project-update.onrender.com/dishes/delete/${productId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -295,7 +295,7 @@ function removeManu(productId) {
 
 async function fetchUserInfo() {
     try {
-      const response = await fetch('http://localhost:3000/workers/all');
+      const response = await fetch('https://nodejs-middle-project-update.onrender.com/workers/all');
       const data = await response.json();
       const workers = data.Workers;
   
