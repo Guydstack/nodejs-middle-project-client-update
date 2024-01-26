@@ -225,6 +225,7 @@ function editManuValue(productId, newValue, type) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`, // Include the token in the headers
         },
+        credentials: 'include', // Add this line
         body: JSON.stringify(body),
     })
         .then(response => response.json())
