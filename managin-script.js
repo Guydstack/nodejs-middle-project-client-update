@@ -230,6 +230,7 @@ function editManuValue(productId, newValue, type) {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, // Include the token in the headers
         },
         body: JSON.stringify(body),
     })
