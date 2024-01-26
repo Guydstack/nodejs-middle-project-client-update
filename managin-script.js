@@ -1,6 +1,9 @@
 console.log("From the frontend");
 
-// Your form submission logic goes here
+
+// const url = 'http://localhost:3000/events/add';
+
+    // Your form submission logic goes here
 var title = document.getElementById("exampleInputname");
 var information = document.getElementById("validationTextarea");
 var selectedOption = document.getElementById("selectOption");
@@ -8,6 +11,7 @@ var amount = document.getElementById("amountInput");
 var fileInput = document.getElementById("validatedCustomFile");
 var eventUrl = document.getElementById("exampleInputUrl");
 const eventsL = document.getElementById("eventList");
+
 
 // check if need to add async
 document.getElementById("myForm").addEventListener("submit", function (event) {
@@ -18,18 +22,18 @@ document.getElementById("myForm").addEventListener("submit", function (event) {
     console.log(fileInput.files[0]);
 
     if (selectedOption.value !== "event") {
-        console.log("Menu Submission");
+        console.log("Menu Submition");
         const imageUrl = eventUrl.value.trim();
-        if (imageUrl) {
-            console.log("User provided URL:", imageUrl);
-            addDish(title.value, information.value, amount.value, imageUrl);
-        } else if (fileInput.files.length > 0) {
-            const fileData = fileInput.files[0].name;
-            console.log("User uploaded file:", fileData);
-            addDish(title.value, information.value, amount.value, fileData, formData);
-        } else {
-            console.log("No URL or file provided");
-        }
+    if (imageUrl) {
+        console.log("User provided URL:", imageUrl);
+        addDish(title.value, information.value, amount.value, imageUrl);
+    } else if (fileInput.files.length > 0){
+        const fileData = fileInput.files[0].name;
+        console.log("User uploaded file:", fileData);
+        addDish(title.value, information.value, amount.value, fileData, formData);
+    } else {
+        console.log("No URL or file provided");
+    }
     } else {
         // Check if the user provided a URL or uploaded a file
         const imageUrl = eventUrl.value.trim();
@@ -44,9 +48,10 @@ document.getElementById("myForm").addEventListener("submit", function (event) {
             console.log("No URL or file provided");
         }
 
-        console.log("Event Submission");
+        console.log("Event Submition");
     }
 });
+
 
 function addEvent(title, information, amount, eventUrl, formData) {
     const event_t = title;
@@ -62,18 +67,17 @@ function addEvent(title, information, amount, eventUrl, formData) {
     mixedFormData.append('event_description', event_i);
     mixedFormData.append('event_price', event_a);
 
-    // Append the file data
+        // Append the file data
     if (formData) {
         mixedFormData.append('event_image', formData.get('event_image'));
     } else {
         mixedFormData.append('event_image', event_u);
     }
 
-    console.log(mixedFormData);
-
+console.log(mixedFormData);
     // Send the mixed FormData in the fetch request
     // check if need to add await
-    fetch("https://nodejs-middle-project-update.onrender.com/events/add", {
+    fetch("https://nodejs-middle-project.onrender.com/events/add", {
         method: "POST",
         body: mixedFormData
     })
@@ -87,15 +91,17 @@ function addEvent(title, information, amount, eventUrl, formData) {
         .catch(error => {
             console.error('Error:', error.message);
         });
-}
+};
 
 function addDish(title, information, amount, dishUrl, fileData) {
+
     const dish_t = title;
     const dish_i = information;
     const dish_a = amount;
     const dish_u = dishUrl;
 
-    fetch("https://nodejs-middle-project-update.onrender.com/dishes/add", {
+
+    fetch("https://nodejs-middle-project.onrender.com/dishes/add", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -107,21 +113,22 @@ function addDish(title, information, amount, dishUrl, fileData) {
             product_image: dish_u,
         }),
     })
-        .then(response => {
-            console.log(response);
-            if (!response.ok) {
-                throw new Error(`Failed to update the JSON file. Status: ${response.status}, ${response.statusText}`);
-            }
-            document.getElementById('myForm').reset();
-        })
-        .catch(error => {
-            console.error('Error:', error.message);
-        });
-}
+    .then(response => {
+        console.log(response);
+        if (!response.ok) {
+            throw new Error(`Failed to update the JSON file. Status: ${response.status}, ${response.statusText}`);
+        }
+        document.getElementById('myForm').reset();
+    })
+    .catch(error => {
+        console.error('Error:', error.message);
+    });
+};
+
 
 const getAllProducts = async () => {
     try {
-        const response = await fetch('https://nodejs-middle-project-update.onrender.com/events/all');
+        const response = await fetch('https://nodejs-middle-project.onrender.com/events/all');
         const data = await response.json();
         eventsL.innerHTML = "";
 
@@ -146,9 +153,11 @@ const getAllProducts = async () => {
     }
 };
 
+
+
 const getAllDish = async () => {
     try {
-        const response = await fetch('https://nodejs-middle-project-update.onrender.com/dishes/all');
+        const response = await fetch('https://nodejs-middle-project.onrender.com/dishes/all');
         const data = await response.json();
         eventsL.innerHTML = "";
 
@@ -185,24 +194,24 @@ function editValue(productId, newValue, type) {
     }
 
     // Send a request to your server to update the value in the database
-    fetch(`https://nodejs-middle-project-update.onrender.com/events/update/${productId}`, {
+    fetch(`https://nodejs-middle-project.onrender.com/events/update/${productId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log(`Successfully updated ${type} for ${productId} with new value: ${newValue}`);
-            } else {
-                console.error(`Error updating ${type} for ${productId}: ${data.message}`);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error.message);
-        });
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log(`Successfully updated ${type} for ${productId} with new value: ${newValue}`);
+        } else {
+            console.error(`Error updating ${type} for ${productId}: ${data.message}`);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error.message);
+    });
 }
 
 function editManuValue(productId, newValue, type) {
@@ -216,135 +225,128 @@ function editManuValue(productId, newValue, type) {
         body.product_price = newValue;
     }
 
-    const token = getCookie('token'); // Obtain the token here
-    console.log('Token:', token);
-                const payload = parseJwt(token);
-            const loggedInUserId = payload.user_id;
-            const isAdmin = Number(payload.premission);
-    
-    console.log(loggedInUserId);
-    console.log(isAdmin);
-
     // Send a request to your server to update the value in the database
-    fetch(`https://nodejs-middle-project-update.onrender.com/dishes/update/${productId}`, {
+    fetch(`https://nodejs-middle-project.onrender.com/dishes/update/${productId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`, // Include the token in the headers
         },
-        credentials: 'include', // Add this line
         body: JSON.stringify(body),
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log(`Successfully updated ${type} for ${productId} with new value: ${newValue}`);
-            } else {
-                console.error(`Error updating ${type} for ${productId}: ${data.message}`);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error.message);
-        });
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log(`Successfully updated ${type} for ${productId} with new value: ${newValue}`);
+        } else {
+            console.error(`Error updating ${type} for ${productId}: ${data.message}`);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error.message);
+    });
 }
 
 function removeEvent(productId) {
+
     // Send a request to your server to update the value in the database
-    fetch(`https://nodejs-middle-project-update.onrender.com/events/delete/${productId}`, {
+    fetch(`https://nodejs-middle-project.onrender.com/events/delete/${productId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         }
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log(`Successfully delete ${productId}`);
-                getAllProducts();
-            } else {
-                console.error(`Error updating ${type} for ${productId}: ${data.message}`);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error.message);
-        });
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log(`Successfully delete ${productId}`);
+            getAllProducts();
+        } else {
+            console.error(`Error updating ${type} for ${productId}: ${data.message}`);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error.message);
+    });
 }
 
+
 function removeManu(productId) {
+
     // Send a request to your server to update the value in the database
-    fetch(`https://nodejs-middle-project-update.onrender.com/dishes/delete/${productId}`, {
+    fetch(`https://nodejs-middle-project.onrender.com/delete/${productId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         }
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log(`Successfully delete ${productId}`);
-                getAllDish();
-            } else {
-                console.error(`Error updating ${type} for ${productId}: ${data.message}`);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error.message);
-        });
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log(`Successfully delete ${productId}`);
+            getAllDish();
+        } else {
+            console.error(`Error updating ${type} for ${productId}: ${data.message}`);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error.message);
+    });
 }
 
 async function fetchUserInfo() {
     try {
-        const response = await fetch('https://nodejs-middle-project-update.onrender.com/workers/all');
-        const data = await response.json();
-        const workers = data.Workers;
-
-        const token = getCookie('token'); // Assume you have a function to get cookies named getCookie
-
-        if (token) {
-            const payload = parseJwt(token);
-            const loggedInUserId = payload.user_id;
-            const isAdmin = Number(payload.premission);
-
-            const loggedInUser = workers.find(user => user._id.toString() === loggedInUserId);
-
-            const userNameElement = document.querySelector(".user_name");
-            const navBar = document.querySelector(".user_name");
-            if (navBar && loggedInUser && isAdmin === 10) {
-                navBar.innerHTML += `
+      const response = await fetch('https://nodejs-middle-project.onrender.com/workers/all');
+      const data = await response.json();
+      const workers = data.Workers;
+  
+      const token = getCookie('token'); // Assume you have a function to get cookies named getCookie
+  
+      if (token) {
+        const payload = parseJwt(token);
+        const loggedInUserId = payload.user_id;
+        const isAdmin = Number(payload.premission);
+  
+        const loggedInUser = workers.find(user => user._id.toString() === loggedInUserId);
+  
+        const userNameElement = document.querySelector(".user_name");
+        const navBar = document.querySelector(".user_name");
+        if (navBar && loggedInUser && isAdmin === 10){
+           navBar.innerHTML += `
            <small class="text-right">Welcome ${loggedInUser.user_name}
-           <a class="nav-link" href="managin.html">Management</a>
+           <a class="nav-link" href="managin.html">Managment</a>
            </small>
                `;
-            }
-            else if (userNameElement && loggedInUser) {
-                userNameElement.innerHTML += `<small class="text-right">Welcome ${loggedInUser.user_name}</small>`;
-            }
+         }
+        else if (userNameElement && loggedInUser) {
+          userNameElement.innerHTML += `<small class="text-right">Welcome ${loggedInUser.user_name}</small>`;
         }
+      }
     } catch (error) {
-        console.error('Error:', error.message);
+      console.error('Error:', error.message);
     }
-}
-
-// Function to get cookies
-function getCookie(name) {
+  }
+  
+  // Function to get cookies
+  function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
-}
-
-// Function to parse JWT
-function parseJwt(token) {
+  }
+  
+  // Function to parse JWT
+  function parseJwt(token) {
     try {
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => `%${(`00${c.charCodeAt(0).toString(16)}`).slice(-2)}`).join(''));
-
-        return JSON.parse(jsonPayload);
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => `%${(`00${c.charCodeAt(0).toString(16)}`).slice(-2)}`).join(''));
+  
+      return JSON.parse(jsonPayload);
     } catch (error) {
-        console.error('Error parsing JWT:', error.message);
-        return {};
+      console.error('Error parsing JWT:', error.message);
+      return {};
     }
-}
+  }
+  
 
-// Call the function when the page loads
-fetchUserInfo();
+        // Call the function when the page loads
+        fetchUserInfo();
