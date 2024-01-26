@@ -2,7 +2,7 @@ console.log("From the frontend");
 
 const allEvents = document.querySelector(".carousel-inner");
 
-const url = 'http://localhost:3000/events/all';
+const url = 'https://nodejs-middle-project-update.onrender.com/events/all';
 
 
 let events;
@@ -45,7 +45,7 @@ function printDishes(events) {
   
   async function fetchUserInfo() {
     try {
-      const response = await fetch('http://localhost:3000/clients/all');
+      const response = await fetch('https://nodejs-middle-project-update.onrender.com/clients/all');
       const data = await response.json();
       const clients = data.clients;
       const token = getCookie('token'); // Assume you have a function to get cookies named getCookie
