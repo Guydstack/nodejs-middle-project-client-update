@@ -5,7 +5,7 @@ const orderConfirmation = document.getElementById("order_confirmation");
 
 const getAllDish = async () => {
     try {
-        const response = await fetch('http://localhost:3000/dishes/all');
+        const response = await fetch('https://nodejs-middle-project-update.onrender.com/dishes/all');
         const data = await response.json();
 
         menu.innerHTML = "";
@@ -48,7 +48,7 @@ function submitOrder(id, price, userId) {
     const productPrice = price;
     const returnUserId = userId;
 
-    fetch("http://localhost:3000/orders/add", {
+    fetch("https://nodejs-middle-project-update.onrender.com/orders/add", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -77,7 +77,7 @@ function submitOrder(id, price, userId) {
 
 async function fetchUserInfo() {
     try {
-      const response = await fetch('http://localhost:3000/clients/all');
+      const response = await fetch('https://nodejs-middle-project-update.onrender.com/clients/all');
       const data = await response.json();
       const clients = data.clients;
   
@@ -121,7 +121,7 @@ async function fetchUserInfo() {
 
   const getUserOrders = async (userId,productId) => {
     try {
-        const response = await fetch('http://localhost:3000/orders/all');
+        const response = await fetch('https://nodejs-middle-project-update.onrender.com/orders/all');
         const data = await response.json();
 
         if (data.success) {
