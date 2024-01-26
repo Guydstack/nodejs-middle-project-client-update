@@ -1,7 +1,7 @@
 console.log("From the frontend");
 
 
-const url = 'http://localhost:3000/clients/register';
+const url = 'https://nodejs-middle-project-update.onrender.com/clients/register';
 
 let users;
 
@@ -32,7 +32,7 @@ function addUser(email, password, userName) {
     // Check if the user already exists in the database
     // ...
 
-    fetch( "http://localhost:3000/clients/register", {
+    fetch( "https://nodejs-middle-project-update.onrender.com/clients/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
