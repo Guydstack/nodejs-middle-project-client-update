@@ -86,7 +86,7 @@ fetch( "https://nodejs-middle-project-update.onrender.com/clients/login", {
             document.cookie = `token=${isToken}; path=/; secure; samesite=None`;
 
         // Redirect based on user role
-        // redirectUser(isAdmin,UserS);
+        redirectUser(isAdmin,UserS);
     })
     .catch(error => {
         console.error('Error:', error.message);
