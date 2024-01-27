@@ -52,7 +52,7 @@ function userLoged(email, password, select) {
             const isToken = data.token;
 
             //document.cookie = `token=${isToken}; path=/; secure; samesite=None`;
-            document.cookie = `token=${isToken}; domain=nodejs-middle-project-update.onrender.com; path=/; secure; samesite=None`;
+            document.cookie = `token=${isToken}; domain=.onrender.com; path=/; secure; samesite=None`;
 
 
 
@@ -87,7 +87,7 @@ fetch( "https://nodejs-middle-project-update.onrender.com/clients/login", {
         const isToken = data.token;
         
             //document.cookie = `token=${isToken}; path=/; secure; samesite=None`;
-            document.cookie = `token=${isToken}; domain=nodejs-middle-project-update.onrender.com; path=/; secure; samesite=None`;
+            document.cookie = `token=${isToken}; domain=.onrender.com; path=/; secure; samesite=None`;
 
 
         // Redirect based on user role
