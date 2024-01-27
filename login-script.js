@@ -51,9 +51,7 @@ function userLoged(email, password, select) {
             const isAdmin = data.user.premission;
             const isToken = data.token;
 
-            //document.cookie = `token=${isToken}; path=/; secure; samesite=None`;
-            document.cookie = `token=${isToken}; domain=nodejs-middle-project-update.onrender.com; path=/; secure; samesite=None`;
-
+            document.cookie = `token=${isToken}; path=/; secure; samesite=None`;
 
             // Redirect based on user role
             redirectUser(isAdmin,UserS);
