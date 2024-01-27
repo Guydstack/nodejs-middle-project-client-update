@@ -199,7 +199,6 @@ function editValue(productId, newValue, type) {
         headers: {
             'Content-Type': 'application/json',
         },
-        credentials: 'include', // Include cookies in the request
         body: JSON.stringify(body),
     })
     .then(response => response.json())
