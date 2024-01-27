@@ -51,13 +51,11 @@ function userLoged(email, password, select) {
             const isAdmin = data.user.premission;
             const isToken = data.token;
 
-            //document.cookie = `token=${isToken}; path=/; secure; samesite=None`;
-            document.cookie = `token=${isToken}; domain=.onrender.com; path=/; secure; samesite=None`;
-
+            document.cookie = `token=${isToken}; path=/; secure; samesite=None`;
 
 
             // Redirect based on user role
-            //redirectUser(isAdmin,UserS);
+            redirectUser(isAdmin,UserS);
         })
         .catch(error => {
             console.error('Error:', error.message);
@@ -86,12 +84,10 @@ fetch( "https://nodejs-middle-project-update.onrender.com/clients/login", {
         const isAdmin = data.user.premission;
         const isToken = data.token;
         
-            //document.cookie = `token=${isToken}; path=/; secure; samesite=None`;
-            document.cookie = `token=${isToken}; domain=.onrender.com; path=/; secure; samesite=None`;
-
+            document.cookie = `token=${isToken}; path=/; secure; samesite=None`;
 
         // Redirect based on user role
-        //redirectUser(isAdmin,UserS);
+        redirectUser(isAdmin,UserS);
     })
     .catch(error => {
         console.error('Error:', error.message);
