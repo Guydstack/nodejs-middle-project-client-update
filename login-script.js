@@ -50,7 +50,10 @@ function userLoged(email, password, select) {
             // Check the isAdmin property in the JWT payload
             const isAdmin = data.user.premission;
             const isToken = data.token;
-
+            
+            localStorage.setItem('token', data.token);
+            console.log('Token stored in local storage:', data.token);
+            
             document.cookie = `token=${isToken}; path=/; secure; samesite=None`;
 
             // Redirect based on user role
