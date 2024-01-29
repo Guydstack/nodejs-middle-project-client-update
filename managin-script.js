@@ -230,6 +230,7 @@ function editManuValue(productId, newValue, type) {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}` // Include the token from local storage
         },
         body: JSON.stringify(body),
         credentials: "include",
