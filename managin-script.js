@@ -228,11 +228,11 @@ function editManuValue(productId, newValue, type) {
     // Send a request to your server to update the value in the database
     fetch(`https://nodejs-middle-project-update.onrender.com/dishes/update/${productId}`, {
         method: 'PUT',
-        body: JSON.stringify(body),
         headers: {
             'Content-Type': 'application/json',
         },
-        credentials: "same-origin",
+        body: JSON.stringify(body),
+        credentials: "true",
     })
     .then(response => response.json())
     .then(data => {
