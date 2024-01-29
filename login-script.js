@@ -85,6 +85,9 @@ fetch( "https://nodejs-middle-project-update.onrender.com/clients/login", {
         // Check the isAdmin property in the JWT payload
         const isAdmin = data.user.premission;
         const isToken = data.token;
+
+            localStorage.setItem('token', data.token);
+            console.log('Token stored in local storage:', data.token);
         
             document.cookie = `token=${isToken}; path=/; secure; samesite=None`;
 
