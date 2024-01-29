@@ -232,7 +232,7 @@ function editManuValue(productId, newValue, type) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
-        credentials: "true",
+        credentials: "include",
     })
     .then(response => response.json())
     .then(data => {
