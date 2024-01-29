@@ -198,8 +198,10 @@ function editValue(productId, newValue, type) {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
         },
         body: JSON.stringify(body),
+        credentials: "include",        
     })
     .then(response => response.json())
     .then(data => {
