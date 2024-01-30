@@ -79,7 +79,10 @@ console.log(mixedFormData);
     // check if need to add await
     fetch("https://nodejs-middle-project-update.onrender.com/events/add", {
         method: "POST",
-        body: mixedFormData
+        body: mixedFormData,
+        headers: {
+            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
+        },credentials: "include", 
     })
         .then(response => {
             console.log(response);
@@ -105,13 +108,14 @@ function addDish(title, information, amount, dishUrl, fileData) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
         },
         body: JSON.stringify({
             product_name: dish_t,
             product_description: dish_i,
             product_price: dish_a,
             product_image: dish_u,
-        }),
+        }),credentials: "include",  
     })
     .then(response => {
         console.log(response);
@@ -232,7 +236,7 @@ function editManuValue(productId, newValue, type) {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}` // Include the token from local storage
+            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
         },
         body: JSON.stringify(body),
         credentials: "include",
@@ -257,7 +261,10 @@ function removeEvent(productId) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
         }
+            credentials: "include",
+
     })
     .then(response => response.json())
     .then(data => {
@@ -281,7 +288,11 @@ function removeManu(productId) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
+
         }
+            credentials: "include",
+
     })
     .then(response => response.json())
     .then(data => {
