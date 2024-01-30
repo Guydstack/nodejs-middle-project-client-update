@@ -52,12 +52,14 @@ function submitOrder(id, price, userId) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
         },
         body: JSON.stringify({
             total_price: productPrice,
             products: productId,
             user: returnUserId,
-        }),
+        }), credentials: "include",
+
     })
     .then(response => {
         console.log(response);
