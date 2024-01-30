@@ -80,9 +80,6 @@ console.log(mixedFormData);
     fetch("https://nodejs-middle-project-update.onrender.com/events/add", {
         method: "POST",
         body: mixedFormData,
-        headers: {
-            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
-        },credentials: "include", 
     })
         .then(response => {
             console.log(response);
@@ -108,7 +105,7 @@ function addDish(title, information, amount, dishUrl, fileData) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
+            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`,
         },
         body: JSON.stringify({
             product_name: dish_t,
@@ -202,7 +199,7 @@ function editValue(productId, newValue, type) {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
+            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`,
         },
         body: JSON.stringify(body),
         credentials: "include",        
@@ -236,7 +233,7 @@ function editManuValue(productId, newValue, type) {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
+            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`,
         },
         body: JSON.stringify(body),
         credentials: "include",
@@ -261,8 +258,8 @@ function removeEvent(productId) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
-        }
+            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`,
+        },
             credentials: "include",
 
     })
@@ -288,9 +285,8 @@ function removeManu(productId) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
-
-        }
+            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`,
+        },
             credentials: "include",
 
     })
