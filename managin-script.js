@@ -79,7 +79,11 @@ console.log(mixedFormData);
     // check if need to add await
     fetch("https://nodejs-middle-project-update.onrender.com/events/add", {
         method: "POST",
+        headers: {
+            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`,
+    },
         body: mixedFormData,
+        
     })
         .then(response => {
             console.log(response);
@@ -281,7 +285,7 @@ function removeEvent(productId) {
 function removeManu(productId) {
 
     // Send a request to your server to update the value in the database
-    fetch(`https://nodejs-middle-project-update.onrender.com/delete/${productId}`, {
+    fetch(`https://nodejs-middle-project-update.onrender.com/dishes/delete/${productId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
